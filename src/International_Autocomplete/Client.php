@@ -2,11 +2,11 @@
 
 namespace SmartyStreets\PhpSdk\International_Autocomplete;
 
-require_once(dirname(dirname(__FILE__)) . '/ArrayUtil.php');
-require_once(dirname(dirname(__FILE__)) . '/Sender.php');
-require_once(dirname(dirname(__FILE__)) . '/Serializer.php');
-require_once(dirname(dirname(__FILE__)) . '/Request.php');
-require_once('Result.php');
+require_once(__DIR__ . '/../ArrayUtil.php');
+require_once(__DIR__ . '/../Sender.php');
+require_once(__DIR__ . '/../Serializer.php');
+require_once(__DIR__ . '/../Request.php');
+require_once(__DIR__ . '/Result.php');
 use SmartyStreets\PhpSdk\Exceptions\SmartyException;
 use SmartyStreets\PhpSdk\Sender;
 use SmartyStreets\PhpSdk\Serializer;
@@ -31,7 +31,7 @@ class Client {
 
         $request = $this->buildRequest($lookup);
 
-        $response = $this->sender->send($request);
+        $response = $this->sender->send($request, '/v2/lookup');
 
         $result = $this->serializer->deserialize($response->getPayload());
         if ($result == null)
@@ -42,7 +42,7 @@ class Client {
 
     private function buildRequest(Lookup $lookup) {
         $request = new Request();
-
+        
         if ($lookup->getAddressID() != null) {
             $request->setUrlComponents("/" . $lookup->getAddressID());
         }

@@ -1,10 +1,10 @@
 <?php
 
-require_once(dirname(dirname(__FILE__)) . '/src/SharedCredentials.php');
-require_once(dirname(dirname(__FILE__)) . '/src/StaticCredentials.php');
-require_once(dirname(dirname(__FILE__)) . '/src/ClientBuilder.php');
-require_once(dirname(dirname(__FILE__)) . '/src/US_Autocomplete_Pro/Lookup.php');
-require_once(dirname(dirname(__FILE__)) . '/src/US_Autocomplete_Pro/Client.php');
+require_once(__DIR__ . '/../src/SharedCredentials.php');
+require_once(__DIR__ . '/../src/StaticCredentials.php');
+require_once(__DIR__ . '/../src/ClientBuilder.php');
+require_once(__DIR__ . '/../src/US_Autocomplete_Pro/Lookup.php');
+require_once(__DIR__ . '/../src/US_Autocomplete_Pro/Client.php');
 
 use SmartyStreets\PhpSdk\SharedCredentials;
 use SmartyStreets\PhpSdk\StaticCredentials;
@@ -33,7 +33,7 @@ class USAutocompleteProExample
         // The appropriate license values to be used for your subscriptions
         // can be found on the Subscriptions page the account dashboard.
         // https://www.smartystreets.com/docs/cloud/licensing
-        $client = (new ClientBuilder($credentials)) ->withLicenses(["us-autocomplete-pro-cloud"])
+        $client = (new ClientBuilder($credentials))
             ->buildUSAutocompleteProApiClient();
 
         // Documentation for input fields can be found at:

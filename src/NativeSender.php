@@ -3,9 +3,9 @@
 namespace SmartyStreets\PhpSdk;
 
 include_once('Sender.php');
-require_once('Response.php');
-require_once('Version.php');
-require_once('Proxy.php');
+require_once(__DIR__ . '/Response.php');
+require_once(__DIR__ . '/Version.php');
+require_once(__DIR__ . '/Proxy.php');
 
 use SmartyStreets\PhpSdk\Exceptions\SmartyException;
 
@@ -31,7 +31,7 @@ class NativeSender implements Sender
         $this->customHeaders = $customHeaders;
     }
 
-    function send(Request $smartyRequest)
+    function send(Request $smartyRequest, $apiPath)
     {
         $ch = $this->buildRequest($smartyRequest);
         $this->setHeaders($smartyRequest, $ch);
